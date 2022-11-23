@@ -48,6 +48,7 @@ for (let i = 0; i < numberOfDrumButtons; i++) {
   document.querySelectorAll(".drum")[i].addEventListener("click", function () {
     const buttonInnerHTML = this.innerHTML;
     buttonPressed(buttonInnerHTML);
+    buttonAnimation(buttonInnerHTML);
   });
 }
 
@@ -55,4 +56,14 @@ for (let i = 0; i < numberOfDrumButtons; i++) {
 
 document.addEventListener("keydown", function (event) {
   buttonPressed(event.key);
+  buttonAnimation(event.key);
 });
+
+function buttonAnimation(currentKey) {
+  const activeButton = document.querySelector("." + currentKey);
+  activeButton.classList.add("pressed");
+
+  setTimeout(function () {
+    activeButton.classList.remove("pressed");
+  }, 100);
+}
